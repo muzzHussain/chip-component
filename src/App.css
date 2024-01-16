@@ -24,16 +24,6 @@ div{
   position: relative;
 }
 
-/* .searchUser input{
-  width: 60%;
-  height: 10%;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-bottom: 4px solid rgb(47, 47, 112);
-  outline: none;
-} */
-
 .inputContainer input{
   position: relative;
   left: 20%;
@@ -84,13 +74,8 @@ div{
 }
 
 .selectedUser{
-  /* position: absolute;
-  top: 1;
-  bottom: 5px;
-  left: 20%; */
   background-color: grey;
   border-radius: 22px;
-  /* width: 14%; */
   width: calc(14% + 8px);
   display: flex;
   align-items: center;
@@ -120,7 +105,6 @@ div{
 .selectedUsersContainer {
   display: flex;
   flex-wrap: wrap;
-  /* top: -17px; */
   position: absolute;
   left: 20%;
   bottom: 10%;

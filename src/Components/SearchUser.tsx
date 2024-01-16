@@ -5,7 +5,6 @@ import { User } from "../userInterface";
 export const SearchUser = () => {
 
     const [isInputFocused, setIsInputFocused] = useState(true);
-    // const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
     const [availableUsers, setAvailableUsers] = useState<User[]>(userData);
     const [isFirstBackspacePress, setIsFirstBackspacePress] = useState(true);
@@ -39,22 +38,15 @@ export const SearchUser = () => {
     }, [selectedUsers, isFirstBackspacePress]);
 
     const handleUserClick = (user: User) => {
-        console.log('User', user);
         setSelectedUsers((prevSelectedUsers) => {
-            console.log('Prev user', prevSelectedUsers)
-            // Remove the user from the list
             const updatedUsers = prevSelectedUsers.filter((u) => u.id !== user.id);
-            // Add the selected user to the list
             const newSelectedUsers = [...updatedUsers, user];
-            console.log('Updated', updatedUsers)
-            console.log('new selected users', newSelectedUsers)
             setAvailableUsers((prevAvailableUsers) => prevAvailableUsers.filter((u) => u.id !== user.id));
             setIsInputFocused(true);
             return newSelectedUsers;
         });
     };
     
-    // working
     const handleClearSelection = (user: User) => {
         setSelectedUsers((prevSelectedUsers) => prevSelectedUsers.filter((u) => u.id !== user.id));
         setAvailableUsers((prevAvailableUsers) => [...prevAvailableUsers, user]);
@@ -69,23 +61,6 @@ export const SearchUser = () => {
             }
         }
     };
-
-
-    
-
-
-    // const handleUserClick = (user:User) => {
-    //     console.log('user', user);
-    //     setSelectedUser(user);
-    //     setIsInputFocused(false);
-
-    // };
-
-    // const handleClearSelection = () => {
-    //     setSelectedUser(null);
-    //     // console.log('Clear User', user);
-    //     setIsInputFocused(true);
-    // }
 
     const handleInputBlur = () => {
         setTimeout(() => {
@@ -107,14 +82,12 @@ export const SearchUser = () => {
                         placeholder="Add new user" 
                         onFocus={()=>setIsInputFocused(true)}
                         onBlur={handleInputBlur}
-                        // readOnly
                         ref={inputRef}
                     />
                     <div className="selectedUsersContainer">
                         {selectedUsers.map((user, index) => (
                             <div 
                                 key={user.id} 
-                                // className="selectedUser"
                                 className={`selectedUser ${index === selectedUsers.length - 1 ? 'highlight' : ''}`}
                                 >
                                 <img className="selectedUserImage" src={user.image} alt={user.name} />
@@ -123,17 +96,6 @@ export const SearchUser = () => {
                             </div>
                         ))}
                     </div>
-                    {/* {
-                    selectedUser && (
-                        <div className="selectedUser">
-                            <img className="selectedUserImage" src={selectedUser.image} alt={selectedUser.name} />
-                            <span className="selectedUserName">{selectedUser.name}</span>
-                            <span className="clearSelection" onClick={handleClearSelection}>X</span>
-
-                        </div>
-                    ) 
-                    
-                    }  */}
                 </div>
             </div>
                 {
